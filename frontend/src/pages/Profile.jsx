@@ -49,10 +49,10 @@ const Profile = () => {
         <section className="mb-12">
           <h2 className="text-xl font-semibold text-white mb-4">Continue Watching</h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
-            {watchHistory.length > 0 ? (
-              watchHistory.map((movie) => (
+            {watchHistory && watchHistory.length > 0 ? (
+              watchHistory.map((movie) => movie.movie ?  (
                 <MovieCard key={movie.movie._id} movie={movie.movie} />
-              ))
+              ) : null)
             ) : (
               <p className="text-neutral-400">You haven't started watching any movies yet.</p>
             )}
