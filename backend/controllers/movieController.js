@@ -95,8 +95,8 @@ const getAllMovies = async (req, res) => {
             filter.cast = req.query.cast;
         }
         const movies = await MovieModel.find(filter).sort({ createdAt: -1 })
-        if (movies.length === 0) {
-            return res.status(200).json({ success: false, message: "There is no movies to show" })
+        if (!movies || movies.length === 0) {
+            return res.status(200).json({ success: false, message: "There is no movies to show", movies: [] });
         }
         return res.status(200).json({ success: true, message: "Movies fetched successfully", movies });
     } catch (error) {
