@@ -34,9 +34,10 @@ const WatchPage = () => {
   };
 
   const handleLoadedMetadata = () => {
-    if (videoRef.current && resumeTime > 0) {
-      videoRef.current.currentTime = resumeTime;
-    }
+    // if (videoRef.current && resumeTime > 0) {
+    //   videoRef.current.currentTime = resumeTime;
+    // }
+    videoRef.current.currentTime = resumeTime;
   };
 
   const handleTimeUpdate = () => {
