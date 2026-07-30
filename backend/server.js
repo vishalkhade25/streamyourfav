@@ -7,10 +7,17 @@ import movieRouter from "./routes/movieRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import reviewRouter from "./routes/reviewRoutes.js";
 import streamRouter from "./routes/streamRoutes.js";
+import dns from "dns";
+
+// Set the DNS server to use
+dns.setServers(['1.1.1.1',
+    '8.8.8.8'
+]);
 
 const app = express();
 app.use(cors({
-    origin: "http://localhost:5173"
+    origin: process.env.CLIENT_URL,
+    credentials: true
 }));
 dotenv.config();
 app.use(express.json());
@@ -25,4 +32,4 @@ const port = process.env.PORT || 5000;
 
 app.listen(port, () => {
     console.log(`App running on port number ${port}`);
-})
+});
