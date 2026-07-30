@@ -7,6 +7,7 @@ const WatchPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const videoRef = useRef(null);
+  const lastSavedSecond = useRef(-1);
 
   const [movie, setMovie] = useState(null);
   const [resumeTime, setResumeTime] = useState(0);
@@ -39,10 +40,20 @@ const WatchPage = () => {
   };
 
   const handleTimeUpdate = () => {
-    const currentTime = videoRef.current.currentTime;
-    if (Math.floor(currentTime) % 10 === 0) {
-      // only actually fires roughly once every 10 seconds
-      axiosInstance.post(`/user/watchHistory/${id}`, { progressSeconds: currentTime });
+    if (!videoRef.current) return;
+
+    const currentTime = Math.floor(videoRef.current.currentTime);
+
+    if (
+      currentTime > 0 &&
+      currentTime % 10 === 0 &&
+      currentTime !== lastSavedSecond.current
+    ) {
+      lastSavedSecond.current = currentTime;
+
+      axiosInstance.post(`/user/watchHistory/${id}`, {
+        progressSeconds: currentTime,
+      });
     }
   };
 
