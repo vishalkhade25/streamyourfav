@@ -27,7 +27,7 @@ const App = () => {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/movie/:id" element={<MovieDetail />} />
-            <Route path="/watch/:id" element={<WatchPage />} />
+            <Route path="/watch/:id" element={<ProtectedRoute><WatchPage /></ProtectedRoute>} />
             <Route path="/profile" element={<ProtectedRoute><Profile /></ProtectedRoute>} />
             <Route path="/admin" element={<ProtectedRoute adminOnly={true}><AdminDashboard /></ProtectedRoute>} />
             <Route path="/admin/upload" element={<ProtectedRoute adminOnly={true}><MovieUpload /></ProtectedRoute>} />
