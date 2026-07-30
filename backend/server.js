@@ -9,6 +9,8 @@ import reviewRouter from "./routes/reviewRoutes.js";
 import streamRouter from "./routes/streamRoutes.js";
 import dns from "dns";
 
+dotenv.config();
+
 // Set the DNS server to use
 dns.setServers(['1.1.1.1',
     '8.8.8.8'
@@ -19,7 +21,6 @@ app.use(cors({
     origin: process.env.CLIENT_URL,
     credentials: true
 }));
-dotenv.config();
 app.use(express.json());
 await connectDB();
 app.use("/api/auth", authRouter);
