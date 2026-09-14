@@ -1,7 +1,7 @@
 import express from "express";
 import auth from "../middleware/auth.js";
-import { addMovies, getAllMovies, getMovieById, updateMovies, deleteMovie, uploadMovie, uploadPoster,searchSuggestions } from "../controllers/movieController.js";
 import upload from "../middleware/upload.js";
+import { addMovies, getAllMovies, getMovieById, updateMovies, deleteMovie, uploadMovie, uploadPoster,searchSuggestions } from "../controllers/movieController.js";
 
 const movieRouter = express.Router();
 
